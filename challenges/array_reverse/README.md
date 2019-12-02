@@ -9,4 +9,4 @@ Write a function called reverseArray which takes an array as an argument. Withou
 
 ## Solution
 <!-- Embedded whiteboard image -->
-![Drag Racing](assets/array_reverse.jpeg)
+![Whiteboard](assets/array_reverse.jpeg)
