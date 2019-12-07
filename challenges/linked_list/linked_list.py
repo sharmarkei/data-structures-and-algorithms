@@ -15,7 +15,7 @@ class linked_list:
             cur = cur.next
         cur.next = new_node
 
-    def includes(self, data):
+    def incl(self, data):
         if not self.head:
             return False
         cur = self.head
@@ -49,5 +49,5 @@ my_list.to_list()
 my_list.insert(1)
 my_list.insert(2)
 my_list.insert("HELLO")
-print(my_list.includes("HELLO"))
+print(my_list.incl("HELLO"))
 my_list.to_list()
