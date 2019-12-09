@@ -1,7 +1,6 @@
 import pytest
 from linked_list import linked_list, Node
 
-
 my_list = linked_list()
 
 def test_make_node():
