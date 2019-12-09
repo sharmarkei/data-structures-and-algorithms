@@ -1,21 +1,16 @@
-class node:
+class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
-
-
 class linked_list:
     def __init__(self):
-        self.head = node()
-
-    def insert(self, desired_location):
-        new_node = node(desired_location)
-        cur = self.head
-        while cur.next != None:
-            cur = cur.next
-        cur.next = new_node
-
-    def incl(self, data):
+        self.head = Node()
+    def insert(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+        return data
+    def includes(self, data):
         if not self.head:
             return False
         cur = self.head
@@ -24,30 +19,11 @@ class linked_list:
                 return True
             cur = cur.next
         return False
-
-    def length(self):
+    def to_string(self):
+        value = " "
         cur = self.head
-        total = 0
         while cur.next != None:
-            total += 1
+            value += " " + str(cur.data)
             cur = cur.next
-        return total
-
-    def to_list(self):
-        elems = " "
-        cur_node = self.head
-        while cur_node.next != None:
-            cur_node = cur_node.next
-            elems += " " + str(cur_node.data)
-
-        print(elems)
-
-
-my_list = linked_list()
-
-my_list.insert(1)
-my_list.insert(2)
-my_list.insert("HELLO")
-
-print(my_list.incl("HELLO"))
-my_list.to_list()
+        print(value)
+        return value
