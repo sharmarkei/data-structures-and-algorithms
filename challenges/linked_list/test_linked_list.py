@@ -1,60 +1,105 @@
 import pytest
-from linked_list import linked_list, Node
+from linked_list import LinkedList, Node
 
-my_list = linked_list()
+# Fixtures
+# Tests shared to me by Ethan
+# Passing tests
 
-def test_make_node():
-    expected = Node
-    actual = Node(3)
-    assert type(actual) == expected
 
-def test_includes_true():
-    expected = True
-    my_list.insert(12)
-    actual = my_list.includes(12)
+def test_create_linked_list():
+    linked_list = LinkedList()
+    # Note: I found out about the built-in `vars` function on StackOverflow
+    # Source: https://stackoverflow.com/questions/109087/how-to-get-instance-variables-in-python
+    keys = vars(linked_list).keys()
+    assert len(keys) == 1 and "head" in keys
+    assert linked_list.head == None
+
+
+def test_create_node():
+    value = 1
+    node = Node(value)
+    assert node.value == value
+    assert node.next == None
+
+
+def test_insert_linked_list_node():
+    value = 1
+    linked_list = LinkedList()
+    linked_list.insert(value)
+    assert linked_list.head.value == value
+    assert linked_list.head.next == None
+
+    value = 2
+    linked_list.insert(value)
+    assert linked_list.head.value == 2
+    assert isinstance(linked_list.head.next, Node)
+    assert linked_list.head.next.value == 1
+    assert linked_list.head.next.next == None
+
+
+def test_linked_list_includes_value():
+    value = 1
+    linked_list = LinkedList()
+    linked_list.insert(value)
+    assert linked_list.includes(value)
+
+
+def test_get_linked_list_values():
+    linked_list = LinkedList()
+    for i in range(3):
+        value = i
+        linked_list.insert(value)
+
+    expected = "2, 1, 0"
+    actual = str(linked_list)
     assert actual == expected
 
-def test_includes_false():
-    my_list = linked_list()
-    expected = False
-    my_list.insert(12)
-    actual = my_list.includes(13)
-    assert actual == expected
 
-def test_to_string_one():
-    expected = '  3 2 1'
-    my_list = linked_list()
-    my_list.insert(1)
-    my_list.insert(2)
-    my_list.insert(3)
-    actual = my_list.to_string()
-    assert actual == expected
+def test_linked_list_append():
+    linked_list = LinkedList()
+    value = 1
+    linked_list.insert(value)
 
-def test_to_string_two():
-    expected = '  1'
-    my_list = linked_list()
-    my_list.insert(1)
-    actual = my_list.to_string()
-    assert actual == expected
+    value = 2
+    linked_list.append(value)
+    assert linked_list.head.next.value == value
+    assert linked_list.head.next.next == None
 
-def test_insert_one():
-    expected = 3
-    my_list.insert(3)
-    my_list.to_string()
-    actual = my_list.head.data
-    assert actual == expected
-
-def test_insert_two():
-    expected = 5
-    my_list.insert(3)
-    my_list.insert(4)
-    my_list.insert(5)
-    my_list.to_string()
-    actual = my_list.head.data
-    assert actual == expected
+    value = 3
+    linked_list.append(value)
+    assert linked_list.head.next.next.value == value
+    assert linked_list.head.next.next.next == None
 
 
+def test_linked_list_insert_before():
+    linked_list = LinkedList()
+    value = 1
+    linked_list.insert(value)
 
-@pytest.fixture(autouse=True)
-def clean():
-    my_list = []
+    new_value = 2
+    linked_list.insert_before(value, new_value)
+    assert linked_list.head.value == new_value
+    assert linked_list.head.next.value == value
+
+    newer_value = 3
+    linked_list.insert_before(value, newer_value)
+    assert linked_list.head.next.value == newer_value
+    assert linked_list.head.next.next.value == value
+
+
+def test_linked_list_insert_after():
+    linked_list = LinkedList()
+    value = 1
+    linked_list.insert(value)
+
+    new_value = 2
+    linked_list.insert_after(value, new_value)
+    assert linked_list.head.next.value == new_value
+    assert linked_list.head.next.next == None
+
+    newer_value = 3
+    linked_list.insert_after(value, newer_value)
+    assert linked_list.head.next.value == newer_value
+    assert linked_list.head.next.next.value == new_value
+    assert linked_list.head.next.next.next == None
+
