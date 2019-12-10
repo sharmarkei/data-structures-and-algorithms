@@ -61,7 +61,20 @@ class LinkedList:
                 break
             current = current.next
 
+    def kth_from_end(self,n):
+        current = self.head
+        future = current
 
+        for i in range(0,n):
+            try:
+                future = future.next
+            except AttributeError:
+                raise AttributeError('Not in the list')
+        while future.next:
+            future = future.next
+            current = current.next
+        return current.value
+        
 class Node:
     def __init__(self, value):
         self.value = value

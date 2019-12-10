@@ -1,5 +1,5 @@
 import pytest
-from linked_list import LinkedList, Node
+from linked_list import LinkedList, Node, kth_from_end
 
 # Fixtures
 # Tests shared to me by Ethan
@@ -20,7 +20,6 @@ def test_create_node():
     node = Node(value)
     assert node.value == value
     assert node.next == None
-
 
 def test_insert_linked_list_node():
     value = 1
@@ -103,3 +102,6 @@ def test_linked_list_insert_after():
     assert linked_list.head.next.next.value == new_value
     assert linked_list.head.next.next.next == None
 
+def test_kth_from_end():
+    with pytest.raises(AttributeError):
+        kth_from_end(15)
