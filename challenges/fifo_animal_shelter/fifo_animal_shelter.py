@@ -18,6 +18,7 @@ class AnimalShelter:
         self.front = None
         self.end = None
 
+
     def enqueue(self, animal):
         if animal.lower() == 'dog':
             new_dog = Dog()
