@@ -4,21 +4,20 @@ def repeated_words(str):
   
     # Got the regex for puncation and whitespace from https://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string
     str = re.sub(r'[^\w\s]','',str)
-    str = str.split()
+    words = str.lower().split()
     str2 = [] 
   
-    for i in str:
-        
+    for i in words:  
         if i not in str2: 
-            str2.append(i)  
-              
-    for i in range(len(str2)): 
-        print(str2[0])
-
-        return str2[0]
-
+            str2.append(i) 
+            # print(str2)
+        else:
+            print(i)
+            return i 
+            
+    return None
 def main(): 
-    str ='Before you can begin to determine what the composition of a particular paragraph will be, you must first decide on an argument and a working thesis statement for your paper. What is the most important idea that you are trying to convey to your reader? The information in each paragraph must be related to that idea. In other words, your paragraphs should remind your reader that there is a recurrent relationship between your thesis and the information in each paragraph. A working thesis functions like a seed from which your paper, and your ideas, will grow. The whole process is an organic one—a natural progression from a seed to a full-blown paper where there are direct, familial relationships between all of the ideas in the paper.'
+    str ='It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only'
     repeated_words(str)                     
   
 if __name__=="__main__": 
